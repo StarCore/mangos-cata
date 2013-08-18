@@ -32,6 +32,7 @@
 #include "BattleGroundDS.h"
 #include "BattleGroundRV.h"
 #include "BattleGroundIC.h"
+#include "BattlegroundTP.h"
 #include "BattleGroundRB.h"
 #include "MapManager.h"
 #include "Map.h"
@@ -1496,6 +1497,11 @@ void BattleGroundMgr::BuildPvpLogDataPacket(WorldPacket* data, BattleGround* bg)
                 buffer << uint32(((BattleGroundWGScore*)itr->second)->FlagCaptures);        // flag captures
                 buffer << uint32(((BattleGroundWGScore*)itr->second)->FlagReturns);         // flag returns
                 break;
+            case BATTLEGROUND_TP:
+                data->WriteBits(2, 24);                     // count of next fields
+                buffer << uint32(((BattleGroundTPScore*)itr->second)->FlagCaptures);        // flag captures
+                buffer << uint32(((BattleGroundTPScore*)itr->second)->FlagReturns);         // flag returns
+                break;
             case BATTLEGROUND_AB:
                 data->WriteBits(2, 24);                     // count of next fields
                 buffer << uint32(((BattleGroundABScore*)itr->second)->BasesAssaulted);      // bases asssulted
@@ -1637,6 +1643,7 @@ void BattleGroundMgr::BuildPlaySoundPacket(WorldPacket* data, uint32 soundid)
 {
     data->Initialize(SMSG_PLAY_SOUND, 4);
     *data << uint32(soundid);
+    *data << uint64(0);
 }
 
 void BattleGroundMgr::BuildPlayerLeftBattleGroundPacket(WorldPacket* data, ObjectGuid guid)
@@ -1783,6 +1790,9 @@ BattleGround* BattleGroundMgr::CreateNewBattleGround(BattleGroundTypeId bgTypeId
         case BATTLEGROUND_IC:
             bg = new BattleGroundIC(*(BattleGroundIC*)bg_template);
             break;
+        case BATTLEGROUND_TP:
+            bg = new BattleGroundTP(*(BattleGroundTP*)bg_template);
+            break;
         case BATTLEGROUND_RB:
             bg = new BattleGroundRB(*(BattleGroundRB*)bg_template);
             break;
@@ -1829,6 +1839,7 @@ uint32 BattleGroundMgr::CreateBattleGround(BattleGroundTypeId bgTypeId, bool IsA
         case BATTLEGROUND_DS: bg = new BattleGroundDS; break;
         case BATTLEGROUND_RV: bg = new BattleGroundRV; break;
         case BATTLEGROUND_IC: bg = new BattleGroundIC; break;
+        case BATTLEGROUND_TP: bg = new BattleGroundTP; break;
         case BATTLEGROUND_RB: bg = new BattleGroundRB; break;
         default:              bg = new BattleGround;   break;                           // placeholder for non implemented BG
     }

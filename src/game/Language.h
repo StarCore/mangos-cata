@@ -1019,7 +1019,24 @@ enum MangosStrings
     LANG_VENDOR_WRONG_ITEM_TYPE         = 1700,
     LANG_VENDOR_WRONG_CURRENCY_MAXCOUNT = 1701,
 
-    // FREE IDS                           1800-9999
+    // Battleground TP
+    LANG_BG_TP_START_ONE_MINUTE         = 1802,
+    LANG_BG_TP_START_HALF_MINUTE        = 1803,
+    LANG_BG_TP_HAS_BEGUN                = 1804,
+
+    LANG_BG_TP_CAPTURED_HF              = 1805,
+    LANG_BG_TP_CAPTURED_AF              = 1806,
+    LANG_BG_TP_DROPPED_HF               = 1807,
+    LANG_BG_TP_DROPPED_AF               = 1808,
+    LANG_BG_TP_RETURNED_AF              = 1809,
+    LANG_BG_TP_RETURNED_HF              = 1810,
+    LANG_BG_TP_PICKEDUP_HF              = 1811,
+    LANG_BG_TP_PICKEDUP_AF              = 1812,
+    LANG_BG_TP_F_PLACED                 = 1813,
+    LANG_BG_TP_ALLIANCE_FLAG_RESPAWNED  = 1814,
+    LANG_BG_TP_HORDE_FLAG_RESPAWNED     = 1815,
+
+    // FREE IDS                           1815-9999
 
     // Use for not-in-official-sources patches
     //                                    10000-10999
