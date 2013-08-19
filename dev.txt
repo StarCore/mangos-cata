@@ -1,0 +1,7 @@
+1 Added skill step 525
+2 Fix http://www.wowhead.com/spell=57927
+3 Implement battlegound Twin Peaks and fix sound BG
+4 Blizzlike distance for duel
+5 Updated rage to Cataclysm
+6 Add 5th field in reputation_spillover_template for Bilgewater Cartel/Gilneas spillover reputation
+7 Updated critical heal to Cataclysm
