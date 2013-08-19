@@ -6828,7 +6828,7 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
         FactionEntry const* factionEntry4 = sFactionStore.LookupEntry(repTemplate.faction[4]);
         if (repTemplate.faction[4] && !factionEntry4)
         {
-            sLog.outErrorDb("Faction (faction.dbc) %u does not exist but is used in `reputation_spillover_template`", repTemplate.faction[3]);
+            sLog.outErrorDb("Faction (faction.dbc) %u does not exist but is used in `reputation_spillover_template`", repTemplate.faction[4]);
             continue;
         }
 
