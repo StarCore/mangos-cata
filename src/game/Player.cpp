@@ -8532,6 +8532,21 @@ static WorldStatePair WS_world_states[] =
     { 0x0,   0x0 }
 };
 
+static WorldStatePair TP_world_states[] =
+{
+    { 0x62d, 0x0 },                                         // 1581  7 alliance flag captures
+    { 0x62e, 0x0 },                                         // 1582  8 horde flag captures
+    { 0x609, 0x0 },                                         // 1545  9 unk, set to 1 on alliance flag pickup...
+    { 0x60a, 0x0 },                                         // 1546 10 unk, set to 1 on horde flag pickup, after drop it's -1
+    { 0x60b, 0x2 },                                         // 1547 11 unk
+    { 0x641, 0x3 },                                         // 1601 12 unk (max flag captures?)
+    { 0x922, 0x1 },                                         // 2338 13 horde (0 - hide, 1 - flag ok, 2 - flag picked up (flashing), 3 - flag picked up (not flashing)
+    { 0x923, 0x1 },                                         // 2339 14 alliance (0 - hide, 1 - flag ok, 2 - flag picked up (flashing), 3 - flag picked up (not flashing)
+    { 0x1097, 0x1 },                                        // 4247 15 show time limit?
+    { 0x1098, 0x19 },                                       // 4248 16 time remaining in minutes
+    { 0x0,   0x0 }
+};
+
 static WorldStatePair AB_world_states[] =
 {
     { 0x6e7, 0x0 },                                         // 1767  7 stables alliance
@@ -8808,6 +8823,12 @@ void Player::SendInitWorldStates(uint32 zoneid, uint32 areaid)
                 bg->FillInitialWorldStates(data, count);
             else
                 FillInitialWorldState(data, count, WS_world_states);
+            break;
+        case 5031:                                          // TP
+            if (bg && bg->GetTypeID() == BATTLEGROUND_TP)
+                bg->FillInitialWorldStates(data, count);
+            else
+                FillInitialWorldState(data, count, TP_world_states);
             break;
         case 3358:                                          // AB
             if (bg && bg->GetTypeID() == BATTLEGROUND_AB)
