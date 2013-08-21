@@ -58,3 +58,6 @@ insert into `game_graveyard_zone` values
 (1727, 5031, 67),
 (1729, 5031, 469),
 (1728, 5031, 67);
+INSERT INTO `creature_battleground` VALUES ('373896', '2', '0');
+INSERT INTO `creature_battleground` VALUES ('373897', '2', '0');
+INSERT INTO `creature_battleground` VALUES ('373898', '2', '0');
