@@ -191,6 +191,7 @@ enum eConfigUInt32Values
     CONFIG_UINT32_GUID_RESERVE_SIZE_CREATURE,
     CONFIG_UINT32_GUID_RESERVE_SIZE_GAMEOBJECT,
     CONFIG_UINT32_MIN_LEVEL_FOR_RAID,
+    CONFIG_UINT32_RANDOM_BG_RESET_HOUR,
     CONFIG_UINT32_VALUE_COUNT
 };
 
@@ -508,6 +509,7 @@ class World
         /// Next daily quests reset time
         time_t GetNextDailyQuestsResetTime() const { return m_NextDailyQuestReset; }
         time_t GetNextWeeklyQuestsResetTime() const { return m_NextWeeklyQuestReset; }
+        time_t GetNextRandomBGResetTime() const { return m_NextRandomBGReset; }
 
         /// Get the maximum skill level a player can reach
         uint16 GetConfigMaxSkillValue() const
@@ -601,10 +603,12 @@ class World
 
         void InitCurrencyResetTime();
         void InitDailyQuestResetTime();
+        void InitRandomBGResetTime();
         void InitWeeklyQuestResetTime();
         void SetMonthlyQuestResetTime(bool initialize = true);
         void ResetCurrencyWeekCounts();
         void ResetDailyQuests();
+        void ResetRandomBG();
         void ResetWeeklyQuests();
         void ResetMonthlyQuests();
 
@@ -674,6 +678,7 @@ class World
         // scheduled reset times
         time_t m_NextCurrencyReset;
         time_t m_NextDailyQuestReset;
+        time_t m_NextRandomBGReset;
         time_t m_NextWeeklyQuestReset;
         time_t m_NextMonthlyQuestReset;
 

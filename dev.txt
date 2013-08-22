@@ -5,3 +5,4 @@
 5 Updated rage to Cataclysm
 6 Add 5th field in reputation_spillover_template for Bilgewater Cartel/Gilneas spillover reputation
 7 Updated critical heal to Cataclysm
+8 Implement random battleground

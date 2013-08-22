@@ -829,6 +829,7 @@ enum PlayerLoginQueryIndex
     PLAYER_LOGIN_QUERY_LOADMAILS,
     PLAYER_LOGIN_QUERY_LOADMAILEDITEMS,
     PLAYER_LOGIN_QUERY_LOADTALENTS,
+    PLAYER_LOGIN_QUERY_LOADRANDOMBG,
     PLAYER_LOGIN_QUERY_LOADWEEKLYQUESTSTATUS,
     PLAYER_LOGIN_QUERY_LOADMONTHLYQUESTSTATUS,
     PLAYER_LOGIN_QUERY_LOADCURRENCIES,
@@ -2165,6 +2166,9 @@ class MANGOS_DLL_SPEC Player : public Unit
         // returns true if the player is in active state for capture point capturing
         bool CanUseCapturePoint();
 
+        bool GetRandomWinner() { return m_IsBGRandomWinner; }
+        void SetRandomWinner(bool isWinner);		
+
         /*********************************************************/
         /***                    REST SYSTEM                    ***/
         /*********************************************************/
@@ -2380,6 +2384,7 @@ class MANGOS_DLL_SPEC Player : public Unit
 
         BgBattleGroundQueueID_Rec m_bgBattleGroundQueueID[PLAYER_MAX_BATTLEGROUND_QUEUES];
         BGData                    m_bgData;
+        bool m_IsBGRandomWinner;
 
         /*********************************************************/
         /***                    QUEST SYSTEM                   ***/
@@ -2407,6 +2412,7 @@ class MANGOS_DLL_SPEC Player : public Unit
         void _LoadMailedItems(QueryResult* result);
         void _LoadQuestStatus(QueryResult* result);
         void _LoadDailyQuestStatus(QueryResult* result);
+        void _LoadRandomBGStatus(QueryResult *result);
         void _LoadWeeklyQuestStatus(QueryResult* result);
         void _LoadMonthlyQuestStatus(QueryResult* result);
         void _LoadGroup(QueryResult* result);
