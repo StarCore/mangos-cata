@@ -6203,6 +6203,7 @@ void Aura::HandleAuraModIncreaseHealth(bool apply, bool Real)
 
             // Cases where m_amount already has the correct value (spells cast with CastCustomSpell or absolute values)
         case 12976:                                         // Warrior Last Stand triggered spell (Cast with percentage-value by CastCustomSpell)
+        case 53478:                                         // Hunter Last Stand triggered spell (Cast with percentage-value by CastCustomSpell)
         case 28726:                                         // Nightmare Seed
         case 31616:                                         // Nature's Guardian (Cast with percentage-value by CastCustomSpell)
         case 34511:                                         // Valor (Bulwark of Kings, Bulwark of the Ancient Kings)
