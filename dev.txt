@@ -7,3 +7,4 @@
 7 Updated critical heal to Cataclysm
 8 Implement random battleground
 9 Fixed Last Stand Hunter http://www.wowhead.com/spell=53479
+10 Updated health regeneration to cataclysm
