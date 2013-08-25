@@ -9,3 +9,4 @@
 9 Fixed Last Stand Hunter http://www.wowhead.com/spell=53479
 10 Updated health regeneration to cataclysm
 11 4.0.1 Pet change
+12 Water Elementals are now permanent pets
