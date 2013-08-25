@@ -10,3 +10,6 @@
 10 Updated health regeneration to cataclysm
 11 4.0.1 Pet change
 12 Water Elementals are now permanent pets
+
+Thanks Zakamurite
+1 Implement SMSG_WORLD_SERVER_INFO
