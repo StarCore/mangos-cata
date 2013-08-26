@@ -693,6 +693,12 @@ void Spell::EffectSchoolDMG(SpellEffectEntry const* effect)
                     int32 base = irand((int32)m_caster->GetWeaponDamageRange(RANGED_ATTACK, MINDAMAGE), (int32)m_caster->GetWeaponDamageRange(RANGED_ATTACK, MAXDAMAGE));
                     damage += int32(float(base) / m_caster->GetAttackTime(RANGED_ATTACK) * 2800 + m_caster->GetTotalAttackPowerValue(RANGED_ATTACK) * 0.1f);
                 }
+                // Kill Command
+                if (m_spellInfo->Id == 83381)
+                {
+                    float rap = m_caster->GetTotalAttackPowerValue(RANGED_ATTACK);
+                    damage = int32((damage + (rap * 0.516f)));
+                }
                 break;
             }
             case SPELLFAMILY_PALADIN:

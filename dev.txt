@@ -13,3 +13,4 @@
 
 Thanks Zakamurite
 1 Implement SMSG_WORLD_SERVER_INFO
+2 Hunter Kill Command damage
