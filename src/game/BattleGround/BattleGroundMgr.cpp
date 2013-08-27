@@ -2002,15 +2002,15 @@ void BattleGroundMgr::BuildBattleGroundListPacket(WorldPacket* data, ObjectGuid 
     if (!plr)
         return;
 
-    uint32 winner_conquest = plr->GetRandomWinner() ? BG_REWARD_WINNER_CONQUEST_FIRST : BG_REWARD_WINNER_CONQUEST_LAST;		
     uint32 win_kills = plr->GetRandomWinner() ? BG_REWARD_WINNER_HONOR_LAST : BG_REWARD_WINNER_HONOR_FIRST;
-    uint32 loos_kills = plr->GetRandomWinner() ? BG_REWARD_LOSER_HONOR_LAST : BG_REWARD_LOSER_HONOR_FIRST;
+    uint32 win_arena = plr->GetRandomWinner() ? BG_REWARD_WINNER_CONQUEST_LAST : BG_REWARD_WINNER_CONQUEST_FIRST;
+    uint32 loos_kills = plr->GetRandomWinner() ? BG_REWARD_LOOSER_HONOR_LAST : BG_REWARD_LOOSER_HONOR_FIRST;
 
     BattleGround* bgTemplate = sBattleGroundMgr.GetBattleGroundTemplate(bgTypeId);
 
     data->Initialize(SMSG_BATTLEFIELD_LIST);
-    *data << uint32(winner_conquest);                     // 4.3.4 winConquest weekend
-    *data << uint32(winner_conquest);                     // 4.3.4 winConquest random
+    *data << uint32(win_arena);                           // 4.3.4 winConquest weekend
+    *data << uint32(win_arena);                           // 4.3.4 winConquest random
     *data << uint32(loos_kills);                          // 4.3.4 lossHonor weekend
     *data << uint32(bgTypeId);                            // battleground id
     *data << uint32(loos_kills);                          // 4.3.4 lossHonor random

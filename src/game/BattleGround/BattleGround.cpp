@@ -801,7 +801,8 @@ void BattleGround::EndBattleGround(Team winner)
         }
 
         uint32 win_kills = plr->GetRandomWinner() ? BG_REWARD_WINNER_HONOR_LAST : BG_REWARD_WINNER_HONOR_FIRST;
-        uint32 loos_kills = plr->GetRandomWinner() ? BG_REWARD_LOSER_HONOR_LAST : BG_REWARD_LOSER_HONOR_FIRST;
+        uint32 loos_kills = plr->GetRandomWinner() ? BG_REWARD_LOOSER_HONOR_LAST : BG_REWARD_LOOSER_HONOR_FIRST;
+        uint32 win_arena = plr->GetRandomWinner() ? BG_REWARD_WINNER_CONQUEST_LAST : BG_REWARD_WINNER_CONQUEST_FIRST;
 
         if (team == winner)
         {
@@ -814,12 +815,12 @@ void BattleGround::EndBattleGround(Team winner)
                 if (!plr->GetRandomWinner())
                 {
                     // 100cp awarded for the first random battleground won each day
-                    plr->ModifyCurrencyCount(CURRENCY_CONQUEST_ARENA_META, BG_REWARD_WINNER_CONQUEST_FIRST);
+                    plr->ModifyCurrencyCount(CURRENCY_CONQUEST_BG_META, win_arena * GetCurrencyPrecision(CURRENCY_CONQUEST_BG_META));
                     plr->SetRandomWinner(true);
                 }
             }
             else // 50cp awarded for each non-rated battleground won
-                plr->ModifyCurrencyCount(CURRENCY_CONQUEST_ARENA_META, BG_REWARD_WINNER_CONQUEST_LAST);
+                plr->ModifyCurrencyCount(CURRENCY_CONQUEST_BG_META, win_arena * GetCurrencyPrecision(CURRENCY_CONQUEST_BG_META));
 
             plr->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_WIN_BG, 1);
         }
@@ -827,7 +828,7 @@ void BattleGround::EndBattleGround(Team winner)
 		{
             RewardMark(plr, ITEM_LOSER_COUNT);
             if (IsRandom() || BattleGroundMgr::IsBGWeekend(GetTypeID()))
-                UpdatePlayerScore(plr, SCORE_BONUS_HONOR, GetBonusHonorFromKill(loos_kills*4));
+                UpdatePlayerScore(plr, SCORE_BONUS_HONOR, GetBonusHonorFromKill(loos_kills));
         }
 
         plr->CombatStopWithPets(true);
@@ -1405,7 +1406,7 @@ void BattleGround::UpdatePlayerScore(Player* Source, uint32 type, uint32 value)
             if (isBattleGround())
             {
                 // reward honor instantly
-                if (Source->RewardHonor(NULL, 1, (float)value))
+                if (Source->RewardHonor(NULL, 1, (float)value * GetCurrencyPrecision(CURRENCY_HONOR_POINTS)))
                     itr->second->BonusHonor += value;
             }
             break;
