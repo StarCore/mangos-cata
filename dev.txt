@@ -16,3 +16,6 @@ Thanks Zakamurite
 2 Hunter Kill Command damage
 3 Fix Twink Peaks graveyards
 4 Implement bg countdown timer
+5 Druid: Fix talent Tree of Life
+  http://wowhead.com/spell=81097
+  http://wowhead.com/spell=81098
