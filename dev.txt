@@ -19,3 +19,7 @@ Thanks Zakamurite
 5 Druid: Fix talent Tree of Life
   http://wowhead.com/spell=81097
   http://wowhead.com/spell=81098
+6 Warlock: Add spells
+  http://www.wowhead.com/spell=603
+  http://www.wowhead.com/spell=980
+  http://www.wowhead.com/spell=80240
