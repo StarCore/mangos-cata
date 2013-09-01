@@ -565,6 +565,9 @@
     <ClCompile Include="..\..\src\game\BattleGround\BattleGroundTP.cpp">
       <Filter>BattleGround</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\game\BattleGround\BattleGroundBG.cpp">
+      <Filter>BattleGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\game\AccountMgr.h">
@@ -1034,6 +1037,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\game\BattleGround\BattleGroundTP.h">
+      <Filter>BattleGround</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\BattleGround\BattleGroundBG.h">
       <Filter>BattleGround</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\game\BattleGround\BattleGroundWS.h">

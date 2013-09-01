@@ -8597,6 +8597,18 @@ static WorldStatePair AB_world_states[] =
     { 0x0,   0x0 }
 };
 
+static WorldStatePair BG_world_states[] =
+{
+    { 0x6f0, 0x0 },                                         // 1776 alliance resources
+    { 0x6f1, 0x0 },                                         // 1777 horde resources
+    { 0x6f2, 0x0 },                                         // 1778 horde bases
+    { 0x6f3, 0x0 },                                         // 1779 alliance bases
+    { 0x6f4, 0x7d0 },                                       // 1780 max resources
+    { 0x7a3, 0x708 },                                       // 1955 warning limit
+    { 0x0,   0x0 }
+
+};
+
 static WorldStatePair EY_world_states[] =
 {
     { 2753, 0 },                                            // WORLD_STATE_EY_TOWER_COUNT_HORDE
@@ -8908,6 +8920,12 @@ void Player::SendInitWorldStates(uint32 zoneid, uint32 areaid)
                 FillInitialWorldState(data, count, 0xbb9, 0x0); // 3001 8 green
                 FillInitialWorldState(data, count, 0xbba, 0x0); // 3002 9 show
             }
+            break;
+        case 5449:                                          // The Battle for Gilneas
+            if (bg && bg->GetTypeID(true) == BATTLEGROUND_BG)
+                bg->FillInitialWorldStates(data, count);
+            else
+                FillInitialWorldState(data, count, BG_world_states);
             break;
         default:
             FillInitialWorldState(data, count, 0x914, 0x0); // 2324 7

@@ -278,6 +278,7 @@ void WorldSession::HandleBattleGroundPlayerPositionsOpcode(WorldPacket& /*recv_d
         }
         case BATTLEGROUND_AB:
         case BATTLEGROUND_AV:
+        case BATTLEGROUND_BG:
             // for other BG types - send default
             break;
         default:

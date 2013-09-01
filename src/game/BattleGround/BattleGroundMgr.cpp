@@ -33,6 +33,7 @@
 #include "BattleGroundRV.h"
 #include "BattleGroundIC.h"
 #include "BattlegroundTP.h"
+#include "BattlegroundBG.h"
 #include "BattleGroundRB.h"
 #include "MapManager.h"
 #include "Map.h"
@@ -1512,6 +1513,11 @@ void BattleGroundMgr::BuildPvpLogDataPacket(WorldPacket* data, BattleGround* bg)
                 data->WriteBits(1, 24);                     // count of next fields
                 buffer << uint32(((BattleGroundEYScore*)itr->second)->FlagCaptures);        // flag captures
                 break;
+            case BATTLEGROUND_BG:
+                data->WriteBits(2, 24);                     // count of next fields
+                buffer << uint32(((BattleGroundBGScore*)itr->second)->BasesAssaulted);      // bases asssulted
+                buffer << uint32(((BattleGroundBGScore*)itr->second)->BasesDefended);       // bases defended
+                break;
             case BATTLEGROUND_NA:
             case BATTLEGROUND_BE:
             case BATTLEGROUND_AA:
@@ -1755,7 +1761,7 @@ BattleGround* BattleGroundMgr::CreateNewBattleGround(BattleGroundTypeId bgTypeId
 
     if(bgTypeId==BATTLEGROUND_RB)
     {
-        BattleGroundTypeId random_bgs[] = {BATTLEGROUND_AV, BATTLEGROUND_WS, BATTLEGROUND_AB, BATTLEGROUND_EY, BATTLEGROUND_TP/*,BATTLEGROUND_BG, BATTLEGROUND_SA, BATTLEGROUND_IC*/};
+        BattleGroundTypeId random_bgs[] = {BATTLEGROUND_AV, BATTLEGROUND_WS, BATTLEGROUND_AB, BATTLEGROUND_EY, BATTLEGROUND_TP, BATTLEGROUND_BG, /*BATTLEGROUND_SA, BATTLEGROUND_IC*/};
         uint32 bg_num = urand(0, sizeof(random_bgs)/sizeof(BattleGroundTypeId)-1);
         bgTypeId = random_bgs[bg_num];
         bg_template = GetBattleGroundTemplate(bgTypeId);
@@ -1810,6 +1816,9 @@ BattleGround* BattleGroundMgr::CreateNewBattleGround(BattleGroundTypeId bgTypeId
         case BATTLEGROUND_TP:
             bg = new BattleGroundTP(*(BattleGroundTP*)bg_template);
             break;
+        case BATTLEGROUND_BG:
+            bg = new BattleGroundBG(*(BattleGroundBG*)bg_template);
+            break;
         case BATTLEGROUND_RB:
             bg = new BattleGroundRB(*(BattleGroundRB*)bg_template);
             break;
@@ -1860,6 +1869,7 @@ uint32 BattleGroundMgr::CreateBattleGround(BattleGroundTypeId bgTypeId, bool IsA
         case BATTLEGROUND_RV: bg = new BattleGroundRV; break;
         case BATTLEGROUND_IC: bg = new BattleGroundIC; break;
         case BATTLEGROUND_TP: bg = new BattleGroundTP; break;
+        case BATTLEGROUND_BG: bg = new BattleGroundBG; break;
         case BATTLEGROUND_RB: bg = new BattleGroundRB; break;
         default:              bg = new BattleGround;   break;                           // placeholder for non implemented BG
     }

@@ -1035,8 +1035,21 @@ enum MangosStrings
     LANG_BG_TP_F_PLACED                 = 1813,
     LANG_BG_TP_ALLIANCE_FLAG_RESPAWNED  = 1814,
     LANG_BG_TP_HORDE_FLAG_RESPAWNED     = 1815,
+	
+    // Battle for Gilneas
+    LANG_BG_BG_START_ONE_MINUTE         = 1816,
+    LANG_BG_BG_START_HALF_MINUTE        = 1817,
+    LANG_BG_BG_HAS_BEGUN                = 1818,
+    LANG_BG_BG_NODE_LIGHTHOUSE          = 1819,
+    LANG_BG_BG_NODE_WATERWORKS          = 1820,
+    LANG_BG_BG_NODE_MINE                = 1821,
+    LANG_BG_BG_NODE_CLAIMED             = 1822,
+    LANG_BG_BG_NODE_ASSAULTED           = 1823,
+    LANG_YOU_CHANGE_SOUL_SHARDS         = 1824,
+    LANG_YOURS_SOUL_SHARDS_CHANGED      = 1825,
+    LANG_BG_BG_NODE_TAKEN               = 1826,
 
-    // FREE IDS                           1815-9999
+    // FREE IDS                           1827-9999
 
     // Use for not-in-official-sources patches
     //                                    10000-10999

@@ -10,6 +10,7 @@
 10 Updated health regeneration to cataclysm
 11 4.0.1 Pet change
 12 Water Elementals are now permanent pets
+13 Implement battlegound Battle for Gilneas [alfa version]
 
 Thanks Zakamurite
 1 Implement SMSG_WORLD_SERVER_INFO
