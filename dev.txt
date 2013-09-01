@@ -23,3 +23,4 @@ Thanks Zakamurite
   http://www.wowhead.com/spell=603
   http://www.wowhead.com/spell=980
   http://www.wowhead.com/spell=80240
+7 Fix spell http://www.wowhead.com/spell=33333
