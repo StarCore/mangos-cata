@@ -11,6 +11,7 @@
 11 4.0.1 Pet change
 12 Water Elementals are now permanent pets
 13 Implement battlegound Battle for Gilneas [alfa version]
+14 Fix deathknight gladiator glove bonus
 
 Thanks Zakamurite
 1 Implement SMSG_WORLD_SERVER_INFO
