@@ -26,3 +26,13 @@ Thanks Zakamurite
   http://www.wowhead.com/spell=980
   http://www.wowhead.com/spell=80240
 7 Fix spell http://www.wowhead.com/spell=33333
+
+Thanks R2
+1 Fix http://www.wowhead.com/spell=19695
+2 Fix http://www.wowhead.com/spell=18789
+3 Fix http://www.wowhead.com/spell=13280
+4 Fix http://www.wowhead.com/spell=29970
+5 Fix http://www.wowhead.com/spell=45474
+6 Fix http://www.wowhead.com/spell=34665
+7 Fix http://www.wowhead.com/quest=10255
+8 Fix http://www.wowhead.com/quest=11593

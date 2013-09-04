@@ -288,6 +288,26 @@ void Spell::EffectInstaKill(SpellEffectEntry const* /*effect*/)
     if (!unitTarget || !unitTarget->isAlive())
         return;
 
+    // Demonic Sacrifice
+    if (m_spellInfo->Id == 18788 && unitTarget->GetTypeId() == TYPEID_UNIT)
+    {
+        uint32 entry = unitTarget->GetEntry();
+        uint32 spellId;
+        switch (entry)
+        {
+            case   416: spellId = 18789; break;               // imp
+            case   417: spellId = 18792; break;               // fellhunter
+            case  1860: spellId = 18790; break;               // void
+            case  1863: spellId = 18791; break;               // succubus
+            case 17252: spellId = 35701; break;               // fellguard
+            default:
+                sLog.outError("EffectInstaKill: Unhandled creature entry (%u) case.", entry);
+                return;
+        }
+
+        m_caster->CastSpell(m_caster, spellId, true);
+    }
+
     if (m_caster == unitTarget)                             // prevent interrupt message
         finish();
 
@@ -331,6 +351,11 @@ void Spell::EffectSchoolDMG(SpellEffectEntry const* effect)
             {
                 switch (m_spellInfo->Id)                    // better way to check unknown
                 {
+                    case 19698:
+                        damage = unitTarget->GetHealth() / 16;
+                        if (damage < 200)
+                            damage = 200;
+                        break;
                         // Meteor like spells (divided damage to targets)
                     case 24340: case 26558: case 28884:     // Meteor
                     case 36837: case 38903: case 41276:     // Meteor
@@ -886,7 +911,18 @@ void Spell::EffectDummy(SpellEffectEntry const* effect)
                     else                                    // normal root
                         spell_id = 13099;
 
-                    m_caster->CastSpell(unitTarget, spell_id, true, NULL);
+                    m_caster->CastSpell(unitTarget, spell_id, true);
+                    return;
+                }
+                case 13280:                                 // Gnomish Death Ray
+                {
+                    if (!unitTarget)
+                        return;
+
+                    if (roll_chance_i(15))
+                        m_caster->CastSpell(m_caster, 13493, true);
+                    else
+                        m_caster->CastSpell(unitTarget, 13279, true);
                     return;
                 }
                 case 13567:                                 // Dummy Trigger
@@ -1315,6 +1351,14 @@ void Spell::EffectDummy(SpellEffectEntry const* effect)
                     unitTarget->CastSpell(unitTarget, 29952, true, NULL, NULL, m_caster->GetObjectGuid());
                     return;
                 }
+                case 29970:                                 // Deactivate Blizzard (Naxxramas: Sapphiron)
+                {
+                    if (!unitTarget)
+                        return;
+
+                    unitTarget->RemoveAurasDueToSpell(29952);
+                    return;
+                }
                 case 29979:                                 // Massive Magnetic Pull
                 {
                     if (!unitTarget)
@@ -1356,6 +1400,7 @@ void Spell::EffectDummy(SpellEffectEntry const* effect)
                     return;
                 }
                 case 32146:                                 // Liquid Fire
+                case 45474:                                 // Ragefist's Torch
                 {
                     if (!unitTarget || unitTarget->GetTypeId() != TYPEID_UNIT || m_caster->GetTypeId() != TYPEID_PLAYER)
                         return;
@@ -1430,6 +1475,29 @@ void Spell::EffectDummy(SpellEffectEntry const* effect)
                         return;
 
                     unitTarget->CastSpell(unitTarget, m_spellInfo->Id == 33923 ? 33666 : 38795, true);
+                    return;
+                }
+                case 34665:                                 // Administer Antidote
+                {
+                    if (!unitTarget || unitTarget->GetTypeId() != TYPEID_UNIT || m_caster->GetTypeId() != TYPEID_PLAYER)
+                        return;
+
+                    uint32 health = unitTarget->GetHealth();
+
+                    float x, y, z, o;
+                    unitTarget->GetPosition(x, y, z);
+                    o = unitTarget->GetOrientation();
+
+                    ((Creature*)unitTarget)->ForcedDespawn();
+
+                    if (Creature* pSummon = m_caster->SummonCreature(16992, x, y, z, o, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 180000))
+                    {
+                        pSummon->SetHealth(health);
+                        ((Player*)m_caster)->RewardPlayerAndGroupAtEvent(16992, pSummon);
+
+                        if (pSummon->AI())
+                            pSummon->AI()->AttackStart(m_caster);
+                    }
                     return;
                 }
                 case 35745:                                 // Socrethar's Stone
